@@ -1,0 +1,6 @@
+level;Niveau;Le niveau représente l'expérience de votre personnage.;1;custom;int;value;1&20
+name;Nom;Le prénom et nom de votre personnage;2;custom;text;lenght;0&1
+race;Race;La race de votre personnage determine sa place dans l’univers de Dragon Age, où les tensions raciales sont monnaie courante ainsi que certaine caractéristique. Elle determine aussi votre vitesse de départ, les classes disponibles ainsi que leur relation à la Magie.;3;id;race;empty;empty
+classe;Classe;La classe d’un personnage définit les capacités qu’il pourra acquérir au fil du jeu. Elle a une lourde incidence sur son comportement au combat. Elle determine aussi vos attributs principaux et secondaire, vos groupes d'armes maîtrisés et votre santé de départ.;4;id;classe;empty;empty
+specilization;Spécialisation;Une spécialisation est un moyen supplémentaire de distinguer votre personnage des autres en mettant en avant certains aspects de sa classe.;5;id;specilization;list;0-2
+background;Historique;Un historique pour représente les facettes de votre personnage et son histoire. Cela comprend aussi une augmentation d’un attribut, une ou plusieurs compétences et les langues que vous savez parler et lire.;6;id;background;empty;empty
