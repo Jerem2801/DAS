@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jlx.das.R;
@@ -43,8 +44,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Get DataPool
         DataPool.initialize(this);
+        showFirstFragment();
     }
 
+    private void showFirstFragment(){
+        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        if (visibleFragment == null){
+            this.showFragment(PROFILE_FRAGMENT_ID,R.layout.sheet_profile,R.id.fragment_profile_rootview,CustomFragment.MODE_DISPLAY);
+        }
+    }
 
 
 
@@ -54,10 +62,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.activity_main_drawer_profil:
-                showFragment(PROFILE_FRAGMENT_ID,R.layout.sheet_profile,R.id.fragment_profile_rootview);
+                showFragment(PROFILE_FRAGMENT_ID,R.layout.sheet_profile,R.id.fragment_profile_rootview,CustomFragment.MODE_DISPLAY);
                 break;
             case R.id.activity_main_drawer_appareance:
-                showFragment(PROFILE_APPAREANCE_ID,R.layout.sheet_appareance,R.id.fragment_appareance_rootview);
+                showFragment(PROFILE_APPAREANCE_ID,R.layout.sheet_appareance,R.id.fragment_appareance_rootview,CustomFragment.MODE_DISPLAY);
+                break;
             default:
                 break;
         }
@@ -66,20 +75,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void showFragment(String fragmentId,int layoutId,int linearId){
+    public void showFragment(String fragmentId,int layoutId,int linearId,String mode){
         CustomFragment fragment = this.fragmentById.get(fragmentId);
         if (fragment == null) {
-            fragment = CustomFragment.newInstance(fragmentId,layoutId,linearId);
+            fragment = CustomFragment.newInstance();
             this.fragmentById.put(fragmentId,fragment);
         }
+        Bundle bundle = getBundle(fragmentId,layoutId,linearId,mode);
+        fragment.setArguments(bundle);
         this.startTransactionFragment(fragment);
     }
 
-    private void startTransactionFragment(Fragment fragment){
-        if (!fragment.isVisible()){
+    private Bundle getBundle(String fragmentId, int layoutId, int linearId,String mode) {
+        Bundle bundle = new Bundle();
+        bundle.putString(CustomFragment.FRAGMENT_ID,fragmentId);
+        bundle.putInt(CustomFragment.FRAGMENT_LAYOUT_ID,layoutId);
+        bundle.putInt(CustomFragment.FRAGMENT_LINEAR_ID,linearId);
+        bundle.putString(CustomFragment.MODE,mode);
+        return bundle;
+    }
+
+    private void startTransactionFragment(CustomFragment fragment){
+       // if (!fragment.isVisible()){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_frame_layout, fragment).commit();
-        }
+        //}
     }
 
     private void configureToolBar(){
@@ -106,6 +126,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_main_menu_drawer, menu);
+        return true;
     }
 
 }
