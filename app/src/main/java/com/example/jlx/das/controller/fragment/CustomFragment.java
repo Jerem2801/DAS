@@ -16,7 +16,7 @@ import com.example.jlx.das.controller.MainActivity;
 import com.example.jlx.das.entry.character.Character;
 import com.example.jlx.das.entry.character.CharacterReader;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.custoview.CustomView;
+import com.example.jlx.das.ui.custom.item.CustomView;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,15 +48,8 @@ public class CustomFragment extends Fragment {
         Context context = rootView.getContext();
         LinearLayout linearMother = rootView.findViewById(linearId);
 
-        Character fragmentCharacter = CharacterReader.getCharacter(context, fragmentId);
-
-        for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
-            ItemRule itemRule = entry.getKey();
-            String value = entry.getValue();
-            CustomView customView = CustomView.CustomModeFactory.getCustomView(context, linearMother, itemRule, value,mode);
-            customView.createCustomView();
-        }
-
+        CustomView customView = new CustomView(context,linearMother,fragmentId,mode);
+        customView.createCustomView();
 
         Button button = new Button(context);
         if(StringUtils.equals(mode,MODE_EDIT)){
