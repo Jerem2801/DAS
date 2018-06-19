@@ -16,6 +16,7 @@ public class ItemRuleReader {
     private static final int NAME = 1;
     private static final int DESCRIPTION = 2;
     private static final int ORDER = 3;
+    private static final int TYPE_VIEW = 3;
     private static final int TYPE_VALUE = 4;
     private static final int REFERCENCE = 5;
 
@@ -33,10 +34,11 @@ public class ItemRuleReader {
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
             int order = Integer.parseInt(splitData[ORDER]);
+            String typeView = splitData[TYPE_VIEW];
             String typeValue = splitData[TYPE_VALUE];
             String reference = splitData[REFERCENCE];
 
-            ItemRule itemRule = new ItemRule(id,name,description,order,typeValue,reference);
+            ItemRule itemRule = new ItemRule(id,name,description,order,typeView,typeValue,reference);
             itemsRule.put(id,itemRule);
         }
 

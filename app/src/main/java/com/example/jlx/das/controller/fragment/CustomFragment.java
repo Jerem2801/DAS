@@ -16,8 +16,7 @@ import com.example.jlx.das.controller.MainActivity;
 import com.example.jlx.das.entry.character.Character;
 import com.example.jlx.das.entry.character.CharacterReader;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.CustomDisplayView;
-import com.example.jlx.das.ui.CustomEditView;
+import com.example.jlx.das.ui.custoview.CustomView;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,47 +38,44 @@ public class CustomFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         final String fragmentId = getArguments().getString(FRAGMENT_ID);
         final int layoutId = getArguments().getInt(FRAGMENT_LAYOUT_ID);
         final int linearId = getArguments().getInt(FRAGMENT_LINEAR_ID);
-        String mode = getArguments().getString(MODE);
+        final String mode = getArguments().getString(MODE);
 
         View rootView = inflater.inflate(layoutId, container, false);
         Context context = rootView.getContext();
         LinearLayout linearMother = rootView.findViewById(linearId);
-        linearMother.removeAllViews();
 
         Character fragmentCharacter = CharacterReader.getCharacter(context, fragmentId);
 
-        if(StringUtils.equals(mode,MODE_EDIT)){
-            for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
-                ItemRule itemRule = entry.getKey();
-                String value = entry.getValue();
-                CustomEditView customView = new CustomEditView(context,linearMother,itemRule,value);
-                customView.createCustomCataView();
-            }
-        }else{
-            for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
-                ItemRule itemRule = entry.getKey();
-                String value = entry.getValue();
-                CustomDisplayView customView = new CustomDisplayView(context,linearMother,itemRule,value);
-                customView.createCustomCataView();
-            }
+        for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
+            ItemRule itemRule = entry.getKey();
+            String value = entry.getValue();
+            CustomView customView = CustomView.CustomModeFactory.getCustomView(context, linearMother, itemRule, value,mode);
+            customView.createCustomView();
         }
 
 
-
-
-
         Button button = new Button(context);
-        button.setText("Editer");
+        if(StringUtils.equals(mode,MODE_EDIT)){
+            button.setText("Sauvegarder");
+        }else{
+            button.setText("Editer");
+        }
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.showFragment(fragmentId,layoutId,linearId,MODE_EDIT);
+                String modeToApply = MODE_EDIT;
+                if(StringUtils.equals(mode,MODE_EDIT)){
+                   modeToApply = MODE_DISPLAY;
+                }
+                CustomFragment fragment = activity.getCustomFragment(fragmentId,layoutId,linearId,modeToApply);
+                activity.getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
             }
         });
         linearMother.addView(button);

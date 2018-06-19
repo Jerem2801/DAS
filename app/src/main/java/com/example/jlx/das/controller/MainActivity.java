@@ -76,14 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void showFragment(String fragmentId,int layoutId,int linearId,String mode){
-        CustomFragment fragment = this.fragmentById.get(fragmentId);
-        if (fragment == null) {
-            fragment = CustomFragment.newInstance();
-            this.fragmentById.put(fragmentId,fragment);
-        }
-        Bundle bundle = getBundle(fragmentId,layoutId,linearId,mode);
-        fragment.setArguments(bundle);
-        this.startTransactionFragment(fragment);
+        CustomFragment customFragment = getCustomFragment(fragmentId,layoutId,linearId,mode);
+        this.startTransactionFragment(customFragment);
     }
 
     private Bundle getBundle(String fragmentId, int layoutId, int linearId,String mode) {
@@ -135,4 +129,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public CustomFragment getCustomFragment(String fragmentId, int layoutId, int linearId, String mode) {
+        CustomFragment fragment = this.fragmentById.get(fragmentId);
+        if (fragment == null) {
+            fragment = CustomFragment.newInstance();
+            this.fragmentById.put(fragmentId,fragment);
+        }
+        Bundle bundle = getBundle(fragmentId,layoutId,linearId,mode);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 }

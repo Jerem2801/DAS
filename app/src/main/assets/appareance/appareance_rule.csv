@@ -1,2 +1,2 @@
-age;Age;L'age de ton perso;1;custom;text
-gender;Genre;Le Genre de votre Perso;2;custom;text
+age;Age;L'age de ton perso;1;normal;custom;int;empty;empty
+gender;Genre;Le Genre de votre Perso;2;normal;custom;text;lenght;0&30

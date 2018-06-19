@@ -11,12 +11,14 @@ import java.util.Comparator;
 public class ItemRule extends Item {
 
     private int order;
+    private String typeView;
     private String typeValue;
     private String reference;
 
-    public ItemRule(String id, String name, String description, int order, String typeValue, String reference) {
+    public ItemRule(String id, String name, String description, int order,String typeView, String typeValue, String reference) {
         super(id, name, description);
         this.order = order;
+        this.typeView = typeView;
         this.typeValue = typeValue;
         this.reference = reference;
     }
@@ -45,5 +47,11 @@ public class ItemRule extends Item {
         this.reference = reference;
     }
 
+    public String getTypeView() {
+        return typeView;
+    }
 
+    public void setTypeView(String typeView) {
+        this.typeView = typeView;
+    }
 }
