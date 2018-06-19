@@ -18,7 +18,7 @@ public class DataPoolReader {
     private static final String RACE = "race";
     private static final String CLASSE = "classe";
     private static final String BACKGROUND = "background";
-    private static final String SPECIALIZATION = "specilization";
+    private static final String SPECIALIZATION = "specialization";
     private static final List<String> dataIds = Lists.newArrayList();
     static{
         dataIds.add(RACE);

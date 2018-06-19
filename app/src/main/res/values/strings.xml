@@ -2,5 +2,7 @@
     <string name="app_name">Application Test</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="edit">Editer</string>
+    <string name="save">Sauvegarder</string>
 
 </resources>

@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.jlx.das.controller.MainActivity;
-import com.example.jlx.das.entry.character.Character;
-import com.example.jlx.das.entry.character.CharacterReader;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.custom.item.CustomView;
+import com.example.jlx.das.ui.button.CustomButtonEditDisplay;
+import com.example.jlx.das.ui.custom.view.CustomView;
+import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,29 +48,12 @@ public class CustomFragment extends Fragment {
         Context context = rootView.getContext();
         LinearLayout linearMother = rootView.findViewById(linearId);
 
+        Map<Integer,ItemRule> test = Maps.newHashMap();
+
         CustomView customView = new CustomView(context,linearMother,fragmentId,mode);
-        customView.createCustomView();
+        customView.createCustomView(test);
 
-        Button button = new Button(context);
-        if(StringUtils.equals(mode,MODE_EDIT)){
-            button.setText("Sauvegarder");
-        }else{
-            button.setText("Editer");
-        }
-
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity activity = (MainActivity) getActivity();
-                String modeToApply = MODE_EDIT;
-                if(StringUtils.equals(mode,MODE_EDIT)){
-                   modeToApply = MODE_DISPLAY;
-                }
-                CustomFragment fragment = activity.getCustomFragment(fragmentId,layoutId,linearId,modeToApply);
-                activity.getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
-            }
-        });
+        Button button = CustomButtonEditDisplay.getButton(this,context,fragmentId,layoutId,linearId,mode,linearMother,test);
         linearMother.addView(button);
 
 

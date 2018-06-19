@@ -1,10 +1,15 @@
-package com.example.jlx.das.ui.custom.view;
+package com.example.jlx.das.ui.custom.item;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jlx.das.entry.rule.ItemRule;
+
+import java.util.Map;
+import java.util.UUID;
 
 
 public abstract class CustomItemView {
@@ -21,11 +26,15 @@ public abstract class CustomItemView {
         this.value = value;
     }
 
-    public LinearLayout createItemView(Context context){
+    @SuppressLint("NewApi")
+    public LinearLayout createItemView(Context context,Map<Integer,ItemRule> test){
         LinearLayout layoutView = customLayoutView.createLayoutView(context,itemRule);
         TextView titleView = customTitleView.createTitleView(context, itemRule);
         layoutView.addView(titleView);
-        TextView valueView = customValueView.createValueView(context,itemRule,value);
+        View valueView = customValueView.createValueView(context,itemRule,value);
+        int i = valueView.generateViewId();
+        valueView.setId(i);
+        test.put(i, itemRule);
         layoutView.addView(valueView);
         return layoutView;
     }

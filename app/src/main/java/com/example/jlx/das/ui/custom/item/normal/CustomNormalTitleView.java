@@ -1,4 +1,4 @@
-package com.example.jlx.das.ui.custom.view.normal;
+package com.example.jlx.das.ui.custom.item.normal;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.jlx.das.R;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.custom.view.CustomTitleView;
+import com.example.jlx.das.ui.custom.item.CustomTitleView;
 import com.example.jlx.das.ui.listener.CustomClickHelpListener;
 
 public class CustomNormalTitleView implements CustomTitleView {

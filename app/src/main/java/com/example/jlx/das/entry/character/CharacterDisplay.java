@@ -4,11 +4,11 @@ import com.example.jlx.das.entry.rule.ItemRule;
 
 import java.util.Map;
 
-public class Character {
+public class CharacterDisplay {
 
     public Map<ItemRule,String> ruleAndValue;
 
-    public Character(Map<ItemRule, String> ruleAndValue) {
+    public CharacterDisplay(Map<ItemRule, String> ruleAndValue) {
         this.ruleAndValue = ruleAndValue;
     }
 

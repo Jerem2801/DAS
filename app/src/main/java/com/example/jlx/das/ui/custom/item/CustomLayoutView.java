@@ -1,4 +1,4 @@
-package com.example.jlx.das.ui.custom.view;
+package com.example.jlx.das.ui.custom.item;
 
 import android.content.Context;
 import android.widget.LinearLayout;

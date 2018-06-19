@@ -1,8 +1,11 @@
-package com.example.jlx.das.ui.custom.view;
+package com.example.jlx.das.ui.custom.item;
 
+import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.custom.view.normal.CustomNormalView;
+import com.example.jlx.das.ui.custom.item.normal.CustomNormalView;
 import com.google.common.collect.Maps;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
@@ -39,7 +42,7 @@ public enum CustomItemViewFactory {
 
     public static CustomItemView getCustomItemView(ItemRule itemRule, String value, String mode){
         CustomItemViewFactory customItemViewFactory = getCustomItemViewFactory(itemRule.getTypeView());
-        return customItemViewFactory.createCustomItemView(itemRule,value,mode);
+        return customItemViewFactory.createCustomItemView(itemRule, value, mode);
     }
 
 
