@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jlx.das.entry.rule.ItemRule;
+import com.example.jlx.das.ui.UiUtils;
 
 import java.util.Map;
 import java.util.UUID;
@@ -32,7 +33,7 @@ public abstract class CustomItemView {
         TextView titleView = customTitleView.createTitleView(context, itemRule);
         layoutView.addView(titleView);
         View valueView = customValueView.createValueView(context,itemRule,value);
-        int i = valueView.generateViewId();
+        int i = UiUtils.getId(valueView);
         valueView.setId(i);
         test.put(i, itemRule);
         layoutView.addView(valueView);

@@ -28,8 +28,6 @@ public class CustomFragment extends Fragment {
     public static final String MODE_DISPLAY = "display";
 
     public static String FRAGMENT_ID = "fragmentId";
-    public static String FRAGMENT_LAYOUT_ID = "layoutId";
-    public static String FRAGMENT_LINEAR_ID = "linearId";
     public static String MODE = "mode";
 
     public static CustomFragment newInstance() {
@@ -39,21 +37,20 @@ public class CustomFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
-        final String fragmentId = getArguments().getString(FRAGMENT_ID);
-        final int layoutId = getArguments().getInt(FRAGMENT_LAYOUT_ID);
-        final int linearId = getArguments().getInt(FRAGMENT_LINEAR_ID);
-        final String mode = getArguments().getString(MODE);
+        int fragmentId = getArguments().getInt(FRAGMENT_ID);
+        FragmentReference fragmentReference = FragmentReference.getMode(fragmentId);
+        final ModeFragment modeFragment = ModeFragment.getMode(getArguments().getString(MODE));
 
-        View rootView = inflater.inflate(layoutId, container, false);
+        View rootView = inflater.inflate(fragmentReference.getLayoutId(), container, false);
         Context context = rootView.getContext();
-        LinearLayout linearMother = rootView.findViewById(linearId);
+        LinearLayout linearMother = rootView.findViewById(fragmentReference.getLinearId());
 
         Map<Integer,ItemRule> test = Maps.newHashMap();
 
-        CustomView customView = new CustomView(context,linearMother,fragmentId,mode);
+        CustomView customView = new CustomView(context,linearMother,fragmentReference.getName(),modeFragment);
         customView.createCustomView(test);
 
-        Button button = CustomButtonEditDisplay.getButton(this,context,fragmentId,layoutId,linearId,mode,linearMother,test);
+        Button button = CustomButtonEditDisplay.getButton(this,context,fragmentReference,modeFragment,linearMother,test);
         linearMother.addView(button);
 
 

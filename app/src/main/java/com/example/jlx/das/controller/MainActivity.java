@@ -13,6 +13,8 @@ import android.view.MenuItem;
 
 import com.example.jlx.das.R;
 import com.example.jlx.das.controller.fragment.CustomFragment;
+import com.example.jlx.das.controller.fragment.FragmentReference;
+import com.example.jlx.das.controller.fragment.ModeFragment;
 import com.example.jlx.das.data.DataPool;
 import com.google.common.collect.Maps;
 
@@ -23,12 +25,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-
-
-
-    //FRAGMENTS
-    private static final String PROFILE_FRAGMENT_ID = "profile";
-    private static final String PROFILE_APPAREANCE_ID = "appareance";
 
     private Map<String,CustomFragment> fragmentById = Maps.newHashMap();
 
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void showFirstFragment(){
         Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
         if (visibleFragment == null){
-            this.showFragment(PROFILE_FRAGMENT_ID,R.layout.sheet_profile,R.id.fragment_profile_rootview,CustomFragment.MODE_DISPLAY);
+            this.showFragment(FragmentReference.PROFIL,ModeFragment.MODE_DISPLAY);
         }
     }
 
@@ -60,32 +56,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.activity_main_drawer_profil:
-                showFragment(PROFILE_FRAGMENT_ID,R.layout.sheet_profile,R.id.fragment_profile_rootview,CustomFragment.MODE_DISPLAY);
-                break;
-            case R.id.activity_main_drawer_appareance:
-                showFragment(PROFILE_APPAREANCE_ID,R.layout.sheet_appareance,R.id.fragment_appareance_rootview,CustomFragment.MODE_DISPLAY);
-                break;
-            default:
-                break;
-        }
+        FragmentReference fragementReference = FragmentReference.getMode(id);
+        showFragment(fragementReference,ModeFragment.MODE_DISPLAY);
 
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void showFragment(String fragmentId,int layoutId,int linearId,String mode){
-        CustomFragment customFragment = getCustomFragment(fragmentId,layoutId,linearId,mode);
+    public void showFragment(FragmentReference fragmentReference,ModeFragment modeFragment){
+        CustomFragment customFragment = getCustomFragment(fragmentReference,modeFragment);
         this.startTransactionFragment(customFragment);
     }
 
-    private Bundle getBundle(String fragmentId, int layoutId, int linearId,String mode) {
+    private Bundle getBundle(FragmentReference fragmentReference,ModeFragment modeFragment) {
         Bundle bundle = new Bundle();
-        bundle.putString(CustomFragment.FRAGMENT_ID,fragmentId);
-        bundle.putInt(CustomFragment.FRAGMENT_LAYOUT_ID,layoutId);
-        bundle.putInt(CustomFragment.FRAGMENT_LINEAR_ID,linearId);
-        bundle.putString(CustomFragment.MODE,mode);
+        bundle.putInt(CustomFragment.FRAGMENT_ID,fragmentReference.getMenuId());
+        bundle.putString(CustomFragment.MODE,modeFragment.getId());
         return bundle;
     }
 
@@ -128,13 +114,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public CustomFragment getCustomFragment(String fragmentId, int layoutId, int linearId, String mode) {
-        CustomFragment fragment = this.fragmentById.get(fragmentId);
+    public CustomFragment getCustomFragment(FragmentReference fragmentReference, ModeFragment modeFragment) {
+        String name = fragmentReference.getName();
+        CustomFragment fragment = this.fragmentById.get(name);
         if (fragment == null) {
             fragment = CustomFragment.newInstance();
-            this.fragmentById.put(fragmentId,fragment);
+            this.fragmentById.put(name,fragment);
         }
-        Bundle bundle = getBundle(fragmentId,layoutId,linearId,mode);
+        Bundle bundle = getBundle(fragmentReference,modeFragment);
         fragment.setArguments(bundle);
         return fragment;
     }
