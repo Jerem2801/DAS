@@ -6,4 +6,6 @@
     android:textColor="@color/colorPrimary"
     android:textStyle="bold"
     android:textSize="20sp"
+    android:layout_gravity="center"
+    android:gravity="center"
     />

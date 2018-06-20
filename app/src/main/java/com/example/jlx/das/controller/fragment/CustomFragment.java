@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.jlx.das.R;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.button.CustomButtonEditDisplay;
 import com.example.jlx.das.ui.custom.view.CustomView;
@@ -35,9 +36,9 @@ public class CustomFragment extends Fragment {
         FragmentReference fragmentReference = FragmentReference.getMode(fragmentId);
         final ModeType modeType = ModeType.getMode(getArguments().getString(MODE));
 
-        View rootView = inflater.inflate(fragmentReference.getLayoutId(), container, false);
+        View rootView = inflater.inflate(R.layout.sheet_fragment, container, false);
         Context context = rootView.getContext();
-        LinearLayout linearMother = rootView.findViewById(fragmentReference.getLinearId());
+        LinearLayout linearMother = rootView.findViewById(R.id.fragment_rootview);
 
         Map<Integer,ItemRule> test = Maps.newHashMap();
 

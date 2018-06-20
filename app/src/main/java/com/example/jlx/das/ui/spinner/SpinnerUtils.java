@@ -19,7 +19,7 @@ public class SpinnerUtils {
 
     public static Spinner createSpinner(Context context,List<Item> items){
         Spinner spinner = new Spinner(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
         params.gravity = Gravity.CENTER;
         spinner.setLayoutParams(params);
         spinner.setGravity(Gravity.CENTER);

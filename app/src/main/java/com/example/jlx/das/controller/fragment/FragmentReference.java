@@ -7,20 +7,16 @@ import java.util.Map;
 
 public enum FragmentReference {
 
-    PROFIL(R.id.activity_main_drawer_profil,"profile", R.layout.sheet_profile,R.id.fragment_profile_rootview),
-    APPAREANCE(R.id.activity_main_drawer_appareance,"appareance",R.layout.sheet_appareance,R.id.fragment_appareance_rootview),
-    ROLEPLAY(R.id.activity_main_drawer_roleplay,"roleplay",R.layout.sheet_roleplay,R.id.fragment_roleplay_rootview);
+    PROFIL(R.id.activity_main_drawer_profil,"profile"),
+    APPAREANCE(R.id.activity_main_drawer_appareance,"appareance"),
+    ROLEPLAY(R.id.activity_main_drawer_roleplay,"roleplay");
 
     private int menuId;
     private String name;
-    private int layoutId;
-    private int linearId;
 
-    FragmentReference(int menuId, String name, int layoutId, int linearId) {
+    FragmentReference(int menuId, String name) {
         this.menuId = menuId;
         this.name = name;
-        this.layoutId = layoutId;
-        this.linearId = linearId;
     }
 
     private static final Map<Integer,FragmentReference> fragmentById = Maps.newHashMap();
@@ -42,11 +38,4 @@ public enum FragmentReference {
         return name;
     }
 
-    public int getLayoutId() {
-        return layoutId;
-    }
-
-    public int getLinearId() {
-        return linearId;
-    }
 }
