@@ -1,0 +1,3 @@
+character;Caractère;Le caractère de votre personnage.;1;normal;custom;richText;lenght;0&100
+history;Histoire;L'histoire de votre personnage.;2;normal;custom;richText;lenght;0&100
+objectif;Objectifs;Les objectifs de votre personnage.;3;normal;custom;richText;lenght;0&100

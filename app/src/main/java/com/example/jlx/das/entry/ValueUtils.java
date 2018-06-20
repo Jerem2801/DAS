@@ -15,7 +15,8 @@ public class ValueUtils {
 
     private static final int ID = 0;
     private static final int VALUE = 1;
-    private static final String EMPTY = "empty";
+
+    public static final String EMPTY = "empty";
 
     public static boolean isEmpty(String value){
         return StringUtils.equals(EMPTY,value);

@@ -8,7 +8,8 @@ import java.util.Map;
 public enum FragmentReference {
 
     PROFIL(R.id.activity_main_drawer_profil,"profile", R.layout.sheet_profile,R.id.fragment_profile_rootview),
-    APPAREANCE(R.id.activity_main_drawer_appareance,"appareance",R.layout.sheet_appareance,R.id.fragment_appareance_rootview);
+    APPAREANCE(R.id.activity_main_drawer_appareance,"appareance",R.layout.sheet_appareance,R.id.fragment_appareance_rootview),
+    ROLEPLAY(R.id.activity_main_drawer_roleplay,"roleplay",R.layout.sheet_roleplay,R.id.fragment_roleplay_rootview);
 
     private int menuId;
     private String name;

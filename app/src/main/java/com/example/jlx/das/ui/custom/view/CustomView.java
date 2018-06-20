@@ -3,8 +3,8 @@ package com.example.jlx.das.ui.custom.view;
 import android.content.Context;
 import android.widget.LinearLayout;
 
-import com.example.jlx.das.controller.fragment.ModeFragment;
-import com.example.jlx.das.entry.character.CharacterDisplay;
+import com.example.jlx.das.controller.fragment.ModeType;
+import com.example.jlx.das.entry.character.Character;
 import com.example.jlx.das.entry.character.CharacterReader;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.custom.item.CustomItemView;
@@ -18,22 +18,22 @@ public class CustomView {
     private Context context;
     private LinearLayout mother;
     private String fragmentId;
-    private ModeFragment modeFragment;
+    private ModeType modeType;
 
 
-    public CustomView(Context context, LinearLayout mother, String fragementId, ModeFragment modeFragment) {
+    public CustomView(Context context, LinearLayout mother, String fragementId, ModeType modeType) {
         this.context = context;
         this.mother = mother;
         this.fragmentId = fragementId;
-        this.modeFragment = modeFragment;
+        this.modeType = modeType;
     }
 
     public void createCustomView(Map<Integer,ItemRule> test){
-        CharacterDisplay fragmentCharacterDisplay = CharacterReader.getCharacter(context, fragmentId);
-        for(Map.Entry<ItemRule, String> entry : fragmentCharacterDisplay.getRuleAndValue().entrySet()){
+        Character fragmentCharacter = CharacterReader.getCharacter(context, fragmentId);
+        for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
             ItemRule itemRule = entry.getKey();
             String value = entry.getValue();
-            CustomItemView customItemView = CustomItemViewFactory.getCustomItemView(itemRule,value, modeFragment);
+            CustomItemView customItemView = CustomItemViewFactory.getCustomItemView(itemRule,value, modeType);
             if(customItemView != null){
                 LinearLayout itemView = customItemView.createItemView(context,test);
                 mother.addView(itemView);

@@ -26,7 +26,8 @@ public class DataPoolReader {
         dataIds.add(BACKGROUND);
         dataIds.add(SPECIALIZATION);
     }
-    private static final String END =".csv";
+
+    public static final String CSV =".csv";
 
     private DataPoolReader(){
 
@@ -36,7 +37,7 @@ public class DataPoolReader {
         Map<String,Map<String,Item>> itemsByType = Maps.newHashMap();
 
         for(String dataId : dataIds){
-            String path = DIRECTORY_PATH + dataId + END;
+            String path = DIRECTORY_PATH + dataId + CSV;
             List<String> datas = AssetUtils.getData(context, path);
             Map<String,Item> itemsById = ItemReader.getItemsWithId(datas);
             itemsByType.put(dataId,itemsById);

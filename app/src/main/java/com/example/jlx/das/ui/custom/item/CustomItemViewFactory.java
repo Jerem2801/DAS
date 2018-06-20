@@ -1,20 +1,22 @@
 package com.example.jlx.das.ui.custom.item;
 
-import com.example.jlx.das.controller.fragment.ModeFragment;
-import com.example.jlx.das.entry.ValueUtils;
+import com.example.jlx.das.controller.fragment.ModeType;
 import com.example.jlx.das.entry.rule.ItemRule;
+import com.example.jlx.das.ui.custom.item.normal.CustomNormalValueEditView;
 import com.example.jlx.das.ui.custom.item.normal.CustomNormalView;
 import com.google.common.collect.Maps;
-
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
 public enum CustomItemViewFactory {
     NORMAL("normal") {
         @Override
-        public CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeFragment modeFragment) {
-            return new CustomNormalView(itemRule,value,modeFragment);
+        public CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeType modeType) {
+            CustomNormalView customNormalView = new CustomNormalView(itemRule, value);
+            if(modeType.isSave()){
+                customNormalView.setCustomValueView(new CustomNormalValueEditView());
+            }
+            return customNormalView;
         }
     };
 
@@ -24,7 +26,7 @@ public enum CustomItemViewFactory {
         this.typeView = typeView;
     }
 
-    public abstract CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeFragment modeFragment);
+    public abstract CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeType modeType);
 
     private final static Map<String,CustomItemViewFactory> processorFactoryByType = Maps.newHashMap();
     static{
@@ -41,9 +43,9 @@ public enum CustomItemViewFactory {
         return customItemViewFactory;
     }
 
-    public static CustomItemView getCustomItemView(ItemRule itemRule, String value, ModeFragment modeFragment){
+    public static CustomItemView getCustomItemView(ItemRule itemRule, String value, ModeType modeType){
         CustomItemViewFactory customItemViewFactory = getCustomItemViewFactory(itemRule.getTypeView());
-        return customItemViewFactory.createCustomItemView(itemRule, value, modeFragment);
+        return customItemViewFactory.createCustomItemView(itemRule, value, modeType);
     }
 
 

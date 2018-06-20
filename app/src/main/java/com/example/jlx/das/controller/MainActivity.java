@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.example.jlx.das.R;
 import com.example.jlx.das.controller.fragment.CustomFragment;
 import com.example.jlx.das.controller.fragment.FragmentReference;
-import com.example.jlx.das.controller.fragment.ModeFragment;
+import com.example.jlx.das.controller.fragment.ModeType;
 import com.example.jlx.das.data.DataPool;
 import com.google.common.collect.Maps;
 
@@ -33,45 +33,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Configure all views
         this.configureToolBar();
         this.configureDrawerLayout();
         this.configureNavigationView();
 
-        //Get DataPool
         DataPool.initialize(this);
         showFirstFragment();
     }
-
-    private void showFirstFragment(){
-        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
-        if (visibleFragment == null){
-            this.showFragment(FragmentReference.PROFIL,ModeFragment.MODE_DISPLAY);
-        }
-    }
-
-
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         FragmentReference fragementReference = FragmentReference.getMode(id);
-        showFragment(fragementReference,ModeFragment.MODE_DISPLAY);
+        showFragment(fragementReference, ModeType.MODE_DISPLAY);
 
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void showFragment(FragmentReference fragmentReference,ModeFragment modeFragment){
-        CustomFragment customFragment = getCustomFragment(fragmentReference,modeFragment);
+    private void showFirstFragment(){
+        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.activity_main_frame_layout);
+        if (visibleFragment == null){
+            this.showFragment(FragmentReference.PROFIL, ModeType.MODE_DISPLAY);
+        }
+    }
+
+    public void showFragment(FragmentReference fragmentReference,ModeType modeType){
+        CustomFragment customFragment = getCustomFragment(fragmentReference, modeType);
         this.startTransactionFragment(customFragment);
     }
 
-    private Bundle getBundle(FragmentReference fragmentReference,ModeFragment modeFragment) {
+    public CustomFragment getCustomFragment(FragmentReference fragmentReference, ModeType modeType) {
+        String name = fragmentReference.getName();
+        CustomFragment fragment = this.fragmentById.get(name);
+        if (fragment == null) {
+            fragment = CustomFragment.newInstance();
+            this.fragmentById.put(name,fragment);
+        }
+        Bundle bundle = getBundle(fragmentReference, modeType);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    private Bundle getBundle(FragmentReference fragmentReference,ModeType modeType) {
         Bundle bundle = new Bundle();
         bundle.putInt(CustomFragment.FRAGMENT_ID,fragmentReference.getMenuId());
-        bundle.putString(CustomFragment.MODE,modeFragment.getId());
+        bundle.putString(CustomFragment.MODE, modeType.getId());
         return bundle;
     }
 
@@ -81,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                    .replace(R.id.activity_main_frame_layout, fragment).commit();
        }
     }
+
+    // INITIALIZE NAVIGATION VIEW
 
     private void configureToolBar(){
         this.toolbar = findViewById(R.id.activity_main_toolbar);
@@ -114,15 +124,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public CustomFragment getCustomFragment(FragmentReference fragmentReference, ModeFragment modeFragment) {
-        String name = fragmentReference.getName();
-        CustomFragment fragment = this.fragmentById.get(name);
-        if (fragment == null) {
-            fragment = CustomFragment.newInstance();
-            this.fragmentById.put(name,fragment);
-        }
-        Bundle bundle = getBundle(fragmentReference,modeFragment);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
+
 }

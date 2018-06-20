@@ -5,7 +5,7 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-public enum ModeFragment {
+public enum ModeType {
 
     MODE_DISPLAY("display",false, R.string.edit,"edit"),
     MODE_EDIT("edit",true,R.string.save,"display");
@@ -15,21 +15,21 @@ public enum ModeFragment {
     private int textId;
     private String oppositeId;
 
-    private ModeFragment(String id,boolean save,int textId,String oppositeId){
+    ModeType(String id, boolean save, int textId, String oppositeId){
         this.id = id;
         this.save = save;
         this.textId = textId;
         this.oppositeId = oppositeId;
     }
 
-    private static final Map<String,ModeFragment> modeById = Maps.newHashMap();
+    private static final Map<String,ModeType> modeById = Maps.newHashMap();
     static{
-        for(ModeFragment mode : ModeFragment.values()){
+        for(ModeType mode : ModeType.values()){
             modeById.put(mode.id,mode);
         }
     }
 
-    public static ModeFragment getMode(String id){
+    public static ModeType getMode(String id){
         return modeById.get(id);
     }
 

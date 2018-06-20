@@ -1,14 +1,17 @@
 package com.example.jlx.das.entry.character;
 
 import android.content.Context;
-import android.renderscript.Sampler;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
+import com.example.jlx.das.data.DataPoolReader;
 import com.example.jlx.das.entry.ValueUtils;
+import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.entry.rule.ItemRuleReader;
 import com.example.jlx.das.stream.AssetUtils;
-import com.example.jlx.das.stream.ReaderConstant;
-import com.example.jlx.das.stream.RessourceUtils;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,26 +23,21 @@ import java.util.TreeMap;
 
 public class CharacterReader {
 
-    private static final String RULE_PATH = "_rule.csv";
-    private static final String VALUE_PATH = "_value.csv";
-
-    private static final int ID = 0;
-    private static final int VALUE = 1;
-    private static final String EMPTY = "empty";
+    private static final String RULE_PATH = "_rule" + DataPoolReader.CSV;
 
     private CharacterReader(){
 
     }
 
-    public static CharacterDisplay getCharacter(Context context, String fragmentId){
+    public static Character getCharacter(Context context, String fragmentId){
         Map<ItemRule,String> ruleAndValue = Maps.newHashMap();
-        String root = fragmentId + "/"+ fragmentId;
+        String root = fragmentId + "/" + fragmentId;
 
         String pathRule =  root + RULE_PATH;
         List<String> datas = AssetUtils.getData(context, pathRule);
         Map<String,ItemRule> itemsRuleWithId = ItemRuleReader.getItemsRuleWithId(datas);
 
-        String pathValue = fragmentId + ".csv";
+        String pathValue = fragmentId + DataPoolReader.CSV;
         Map<String, String> values = ValueUtils.getValues(context, pathValue);
         for(Map.Entry<String, ItemRule> entry : itemsRuleWithId.entrySet()){
             String key = entry.getKey();
@@ -47,7 +45,7 @@ public class CharacterReader {
 
             String value = values.get(key);
             if(StringUtils.isBlank(value)){
-                value = EMPTY;
+                value = ValueUtils.EMPTY;
             }
             ruleAndValue.put(itemRule,value);
         }
@@ -61,6 +59,41 @@ public class CharacterReader {
         );
         sortMap.putAll(ruleAndValue);
 
-        return new CharacterDisplay(sortMap);
+        return new Character(sortMap);
+    }
+
+    public static Character getCharacterNewValue(LinearLayout linearMother, Map<Integer,ItemRule> valueViewId){
+        Map<ItemRule,String> ruleAndValue = Maps.newHashMap();
+
+        for(Map.Entry<Integer, ItemRule> entry : valueViewId.entrySet()){
+            Integer key = entry.getKey();
+            ItemRule itemRule = entry.getValue();
+
+            View viewById = linearMother.findViewById(key);
+            String value = StringUtils.EMPTY;
+
+            if(StringUtils.equals(itemRule.getTypeValue(),"custom")){
+                EditText text = (EditText) viewById;
+                if(text != null){
+                    String textValue = text.getText().toString();
+                    if(StringUtils.isNotBlank(textValue)){
+                        value = textValue;
+                    }else{
+                        value = ValueUtils.EMPTY;
+                    }
+                }
+            }else{
+                Spinner spinner = (Spinner) viewById;
+                Item item = (Item) spinner.getSelectedItem();
+                if(item != null){
+                    value = item.getId();
+                }
+            }
+
+            ruleAndValue.put(itemRule,value);
+
+        }
+
+        return new Character(ruleAndValue);
     }
 }

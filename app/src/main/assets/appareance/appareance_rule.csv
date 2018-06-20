@@ -1,2 +1,5 @@
-age;Age;L'age de ton perso;1;normal;custom;int;empty;empty
-gender;Genre;Le Genre de votre Perso;2;normal;custom;text;lenght;0&30
+age;Age;L'âge de votre personnage.;1;normal;custom;int;empty;empty
+gender;Genre;Le genre de votre personnage.;2;normal;custom;text;lenght;0&30
+size;Taille;La taille de votre personnage.;3;normal;custom;int;empty;empty
+weight;Poids;Le poids de votre personnage.;4;normal;custom;int;empty;empty
+particular;Signe Particuliers;Les signes physiques particulires de votre personnage, comme des cicatrices, couleurs des yeux etc…;5;normal;custom;richText;lenght;0&100

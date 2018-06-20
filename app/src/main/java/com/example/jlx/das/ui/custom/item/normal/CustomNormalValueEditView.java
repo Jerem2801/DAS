@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.jlx.das.data.DataPoolManager;
+import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
@@ -33,6 +34,9 @@ public class CustomNormalValueEditView implements CustomValueView {
             view = spinner;
         }else{
             EditText textValue = new EditText(context);
+            if(ValueUtils.isEmpty(value)){
+                value = StringUtils.EMPTY;
+            }
             textValue.setText(value);
             textValue.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);

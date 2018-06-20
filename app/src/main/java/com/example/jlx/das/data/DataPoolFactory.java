@@ -8,7 +8,7 @@ public class DataPoolFactory {
 
     }
 
-    public static DataPool getDataLoader(Context context){
+    protected static DataPool getDataLoader(Context context){
         DataPool dataPool = new DataPool();
 
         dataPool.setItems(DataPoolReader.getData(context));
