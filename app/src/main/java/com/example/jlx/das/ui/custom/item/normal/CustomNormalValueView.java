@@ -12,6 +12,7 @@ import com.example.jlx.das.data.DataPoolManager;
 import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
+import com.example.jlx.das.ui.UiUtils;
 import com.example.jlx.das.ui.custom.item.CustomValueView;
 import com.example.jlx.das.ui.listener.CustomClickHelpListener;
 
@@ -30,6 +31,7 @@ public class CustomNormalValueView implements CustomValueView {
             value = item.getName();
             textValue.setOnClickListener(new CustomClickHelpListener(context,value,item.getDescription()));
         }
+        textValue.setPadding(UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6));
         textValue.setText(value);
         textValue.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);

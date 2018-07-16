@@ -9,7 +9,8 @@ public enum FragmentReference {
 
     PROFIL(R.id.activity_main_drawer_profil,"profile"),
     APPAREANCE(R.id.activity_main_drawer_appareance,"appareance"),
-    ROLEPLAY(R.id.activity_main_drawer_roleplay,"roleplay");
+    ROLEPLAY(R.id.activity_main_drawer_roleplay,"roleplay"),
+    ATTRIBUTE(R.id.activity_main_drawer_attribute,"attribute");
 
     private int menuId;
     private String name;

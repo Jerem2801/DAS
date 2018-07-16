@@ -1,5 +1,7 @@
 package com.example.jlx.das.entry.item;
 
+import android.support.annotation.NonNull;
+
 public class Item {
 
     private String id;
@@ -44,4 +46,6 @@ public class Item {
     public String toString() {
         return name;
     }
+
+
 }

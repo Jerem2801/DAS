@@ -37,13 +37,14 @@ public class CustomNormalValueEditView implements CustomValueView {
             if(ValueUtils.isEmpty(value)){
                 value = StringUtils.EMPTY;
             }
+
             textValue.setText(value);
             textValue.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             textValue.setGravity(Gravity.CENTER);
             view = textValue;
         }
-
+        view.setPadding(UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6));
         return view;
     }
 

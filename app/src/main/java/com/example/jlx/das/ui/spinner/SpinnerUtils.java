@@ -9,6 +9,8 @@ import android.widget.Spinner;
 import com.example.jlx.das.R;
 import com.example.jlx.das.entry.item.Item;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class SpinnerUtils {
@@ -19,10 +21,16 @@ public class SpinnerUtils {
 
     public static Spinner createSpinner(Context context,List<Item> items){
         Spinner spinner = new Spinner(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
         spinner.setLayoutParams(params);
         spinner.setGravity(Gravity.CENTER);
+        Collections.sort(items, new Comparator<Item>() {
+
+            public int compare(Item o1, Item o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         SpinnerUtils.setSpinnerItem(context,spinner,items);
         return spinner;
     }

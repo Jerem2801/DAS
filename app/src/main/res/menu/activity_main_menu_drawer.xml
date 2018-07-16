@@ -18,6 +18,10 @@
                     android:id="@+id/activity_main_drawer_roleplay"
                     android:icon="@drawable/baseline_account_box_white_24dp"
                     android:title="Personnalité" />
+                <item
+                    android:id="@+id/activity_main_drawer_attribute"
+                    android:icon="@drawable/baseline_account_box_white_24dp"
+                    android:title="Attribute et Compétence" />
             </group>
         </menu>
     </item>

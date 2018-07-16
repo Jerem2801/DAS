@@ -18,6 +18,13 @@ public enum CustomItemViewFactory {
             }
             return customNormalView;
         }
+    },
+    ATTRIBUTE("attribute"){
+        @Override
+        public CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeType modeType) {
+
+            return null;
+        }
     };
 
     private String typeView;
