@@ -37,7 +37,9 @@ public class CustomNormalValueEditView implements CustomValueView {
             if(ValueUtils.isEmpty(value)){
                 value = StringUtils.EMPTY;
             }
-
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.CENTER;
+            textValue.setLayoutParams(params);
             textValue.setText(value);
             textValue.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
