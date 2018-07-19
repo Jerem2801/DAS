@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        FragmentReference fragementReference = FragmentReference.getMode(id);
+        FragmentReference fragementReference = FragmentReference.getFragementReference(id);
         showFragment(fragementReference, ModeType.MODE_DISPLAY);
 
         this.drawerLayout.closeDrawer(GravityCompat.START);

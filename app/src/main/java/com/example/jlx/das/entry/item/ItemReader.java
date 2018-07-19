@@ -13,6 +13,7 @@ public class ItemReader {
     private static final int ID = 0;
     private static final int NAME = 1;
     private static final int DESCRIPTION = 2;
+    private static final String EMPTY = "empty";
 
     private ItemReader(){
 
@@ -25,12 +26,20 @@ public class ItemReader {
             String[] splitData = StringUtils.split(data, ReaderConstant.SEPARATOR);
             String id = splitData[ID];
             String name = splitData[NAME];
-            String description = splitData[DESCRIPTION];
+            String description = transformEmpty(splitData[DESCRIPTION]);
+
 
             Item item = new Item(id,name,description);
             itemsWithId.put(id,item);
         }
 
         return itemsWithId;
+    }
+
+    private static String transformEmpty(String value){
+        if(StringUtils.equals(EMPTY,value)){
+            value = StringUtils.EMPTY;
+        }
+        return value;
     }
 }

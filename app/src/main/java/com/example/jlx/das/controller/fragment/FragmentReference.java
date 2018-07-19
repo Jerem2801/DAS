@@ -27,7 +27,7 @@ public enum FragmentReference {
         }
     }
 
-    public static FragmentReference getMode(Integer menuId){
+    public static FragmentReference getFragementReference(Integer menuId){
         return fragmentById.get(menuId);
     }
 

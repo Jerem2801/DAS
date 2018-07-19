@@ -28,15 +28,20 @@ public abstract class CustomItemView {
     }
 
     @SuppressLint("NewApi")
-    public LinearLayout createItemView(Context context,Map<Integer,ItemRule> test){
+    public LinearLayout createItemView(Context context,Map<Integer,ItemRule> rules){
         LinearLayout layoutView = customLayoutView.createLayoutView(context,itemRule);
+
         TextView titleView = customTitleView.createTitleView(context, itemRule);
         layoutView.addView(titleView);
+
         View valueView = customValueView.createValueView(context,itemRule,value);
-        int i = UiUtils.getId(valueView);
-        valueView.setId(i);
-        test.put(i, itemRule);
+
+        int id = UiUtils.getId(valueView);
+        valueView.setId(id);
+        rules.put(id, itemRule);
+
         layoutView.addView(valueView);
+
         return layoutView;
     }
 

@@ -33,19 +33,19 @@ public class CustomFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         int fragmentId = getArguments().getInt(FRAGMENT_ID);
-        FragmentReference fragmentReference = FragmentReference.getMode(fragmentId);
+        FragmentReference fragmentReference = FragmentReference.getFragementReference(fragmentId);
         final ModeType modeType = ModeType.getMode(getArguments().getString(MODE));
 
         View rootView = inflater.inflate(R.layout.sheet_fragment, container, false);
         Context context = rootView.getContext();
         LinearLayout linearMother = rootView.findViewById(R.id.fragment_rootview);
 
-        Map<Integer,ItemRule> test = Maps.newHashMap();
+        Map<Integer,ItemRule> rules = Maps.newHashMap();
 
         CustomView customView = new CustomView(context,linearMother,fragmentReference.getName(), modeType);
-        customView.createCustomView(test);
+        customView.createCustomView(rules);
 
-        Button button = CustomButtonEditDisplay.getButton(this,context,fragmentReference, modeType,linearMother,test);
+        Button button = CustomButtonEditDisplay.getButton(this,context,fragmentReference, modeType,linearMother,rules);
         linearMother.addView(button);
 
 

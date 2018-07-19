@@ -12,6 +12,8 @@ import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.custom.item.CustomTitleView;
 import com.example.jlx.das.ui.listener.CustomClickHelpListener;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class CustomNormalTitleView implements CustomTitleView {
 
     @Override
@@ -25,7 +27,9 @@ public class CustomNormalTitleView implements CustomTitleView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             textTitle.setBackground(context.getResources().getDrawable(R.drawable.custom_border_red_with_background));
         }
-        textTitle.setOnClickListener(new CustomClickHelpListener(context,itemRule.getName(),itemRule.getDescription()));
+        if(StringUtils.isNotBlank(itemRule.getDescription())) {
+            textTitle.setOnClickListener(new CustomClickHelpListener(context, itemRule.getName(), itemRule.getDescription()));
+        }
         return textTitle;
     }
 }

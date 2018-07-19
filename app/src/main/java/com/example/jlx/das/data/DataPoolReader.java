@@ -19,12 +19,14 @@ public class DataPoolReader {
     private static final String CLASSE = "classe";
     private static final String BACKGROUND = "background";
     private static final String SPECIALIZATION = "specialization";
+    private static final String LEVEL = "level";
     private static final List<String> dataIds = Lists.newArrayList();
     static{
         dataIds.add(RACE);
         dataIds.add(CLASSE);
         dataIds.add(BACKGROUND);
         dataIds.add(SPECIALIZATION);
+        dataIds.add(LEVEL);
     }
 
     public static final String CSV =".csv";

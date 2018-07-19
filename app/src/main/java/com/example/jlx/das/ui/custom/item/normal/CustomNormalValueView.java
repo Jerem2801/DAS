@@ -29,7 +29,9 @@ public class CustomNormalValueView implements CustomValueView {
             String reference = itemRule.getReference();
             Item item = DataPoolManager.getItem(reference, value);
             value = item.getName();
-            textValue.setOnClickListener(new CustomClickHelpListener(context,value,item.getDescription()));
+            if(StringUtils.isNotBlank(item.getDescription())) {
+                textValue.setOnClickListener(new CustomClickHelpListener(context, value, item.getDescription()));
+            }
         }
         textValue.setPadding(UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6),UiUtils.sizeInDp(context,6));
         textValue.setText(value);
