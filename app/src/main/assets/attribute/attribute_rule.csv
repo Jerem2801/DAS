@@ -1,8 +1,16 @@
-communication;Communication;La Communication recouvre les aptitudes sociales de votre personnage, ses relations personnelles et sa capacité à interagir avec les autres.;4;normal;custom;int;empty;empty
-constitution;Constitution;La Constitution est l’endurance de votre personnage et sa résistance aux blessures.;2;normal;custom;int;empty;empty
-cunning;Ruse;La Ruse mesure l’intelligence, les connaissances et la culture générale de votre personnage.;6;normal;custom;int;empty;empty
-dexterity;Dextérité;La Dextérité englobe l’agilité, la coordination entre les yeux et les mains, et la vitesse.;3;normal;custom;int;empty;empty
-magic;Magie;La Magie détermine la puissance mystique innée de votre personnage.;5;normal;custom;int;empty;empty
-perception;Perception;La Perception couvre tous les sens et l’aptitude à interpréter les informations sensorielles.;7;normal;custom;int;empty;empty
 strength;Force;La Force représente les prouesses physiques dont votre personnage est capable.;1;normal;custom;int;empty;empty
+constitution;Constitution;La Constitution est l’endurance de votre personnage et sa résistance aux blessures.;2;normal;custom;int;empty;empty
+dexterity;Dextérité;La Dextérité englobe l’agilité, la coordination entre les yeux et les mains, et la vitesse.;3;normal;custom;int;empty;empty
+communication;Communication;La Communication recouvre les aptitudes sociales de votre personnage, ses relations personnelles et sa capacité à interagir avec les autres.;4;normal;custom;int;empty;empty
+magic;Magie;La Magie détermine la puissance mystique innée de votre personnage.;5;normal;custom;int;empty;empty
+cunning;Ruse;La Ruse mesure l’intelligence, les connaissances et la culture générale de votre personnage.;6;normal;custom;int;empty;empty
+perception;Perception;La Perception couvre tous les sens et l’aptitude à interpréter les informations sensorielles.;7;normal;custom;int;empty;empty
 willpower;Volonté;La Volonté englobe la résistance mentale, la discipline et la confiance en soi.;8;normal;custom;int;empty;empty
+strength_focus;Force;La Force représente les prouesses physiques dont votre personnage est capable.;9;normal;id;focus_strength;empty;empty
+constitution_focus;Constitution;La Constitution est l’endurance de votre personnage et sa résistance aux blessures.;10;normal;id;focus_constitution;empty;empty
+dexterity_focus;Dextérité;La Dextérité englobe l’agilité, la coordination entre les yeux et les mains, et la vitesse.;11;normal;id;focus_dexterity;empty;empty
+communication_focus;Communication;La Communication recouvre les aptitudes sociales de votre personnage, ses relations personnelles et sa capacité à interagir avec les autres.;12;normal;id;focus_communication;empty;empty
+magic_focus;Magie;La Magie détermine la puissance mystique innée de votre personnage.;13;normal;id;focus_magic;empty;empty
+cunning_focus;Ruse;La Ruse mesure l’intelligence, les connaissances et la culture générale de votre personnage.;14;normal;id;focus_cunning;empty;empty
+perception_focus;Perception;La Perception couvre tous les sens et l’aptitude à interpréter les informations sensorielles.;15;normal;id;focus_perception;empty;empty
+willpower_focus;Volonté;La Volonté englobe la résistance mentale, la discipline et la confiance en soi.;16;normal;id;focus_willpower;empty;empty
