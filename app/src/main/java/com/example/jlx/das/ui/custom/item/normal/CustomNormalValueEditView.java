@@ -14,7 +14,6 @@ import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
-import com.example.jlx.das.ui.custom.item.CustomValueView;
 import com.example.jlx.das.ui.spinner.SpinnerUtils;
 
 import org.apache.commons.lang3.StringUtils;

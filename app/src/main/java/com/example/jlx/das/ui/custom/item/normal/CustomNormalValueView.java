@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jlx.das.data.DataPoolManager;
@@ -13,7 +12,6 @@ import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
-import com.example.jlx.das.ui.custom.item.CustomValueView;
 import com.example.jlx.das.ui.listener.CustomClickHelpListener;
 
 import org.apache.commons.lang3.StringUtils;

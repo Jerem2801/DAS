@@ -28,14 +28,14 @@ public class CustomView {
         this.modeType = modeType;
     }
 
-    public void createCustomView(Map<Integer,ItemRule> test){
+    public void createCustomView(Map<Integer,ItemRule> rules){
         Character fragmentCharacter = CharacterReader.getCharacter(context, fragmentId);
         for(Map.Entry<ItemRule, String> entry : fragmentCharacter.getRuleAndValue().entrySet()){
             ItemRule itemRule = entry.getKey();
             String value = entry.getValue();
             CustomItemView customItemView = CustomItemViewFactory.getCustomItemView(itemRule,value, modeType);
             if(customItemView != null){
-                LinearLayout itemView = customItemView.createItemView(context,test);
+                LinearLayout itemView = customItemView.createItemView(context,rules);
                 mother.addView(itemView);
             }
         }

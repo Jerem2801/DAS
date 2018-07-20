@@ -11,10 +11,9 @@
     tools:context="com.example.jlx.das.controller.MainActivity">
 
     <!-- 1 | MainActivity RootView -->
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
 
         <android.support.design.widget.AppBarLayout
@@ -29,6 +28,7 @@
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ToolBarStyle" />
 
+
         </android.support.design.widget.AppBarLayout>
 
         <!-- FrameLayout for our fragments -->
@@ -36,11 +36,9 @@
             android:id="@+id/activity_main_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
     <!-- 2 | NavigationView -->
     <android.support.design.widget.NavigationView

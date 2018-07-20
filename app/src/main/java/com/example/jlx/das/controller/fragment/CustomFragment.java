@@ -1,6 +1,7 @@
 package com.example.jlx.das.controller.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.jlx.das.R;
 import com.example.jlx.das.entry.rule.ItemRule;
+import com.example.jlx.das.ui.UiUtils;
 import com.example.jlx.das.ui.button.CustomButtonEditDisplay;
 import com.example.jlx.das.ui.custom.view.CustomView;
 import com.google.common.collect.Maps;
@@ -51,6 +54,7 @@ public class CustomFragment extends Fragment {
 
         return rootView;
     }
+
 
 
 }

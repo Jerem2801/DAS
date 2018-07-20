@@ -2,16 +2,16 @@ package com.example.jlx.das.ui.custom.item.normal;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.view.GravityCompat;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.example.jlx.das.R;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
-import com.example.jlx.das.ui.custom.item.CustomLayoutView;
 
-public class CustomNormalLayoutView implements CustomLayoutView {
+public class CustomNormalLayoutView {
 
-    @Override
     public LinearLayout createLayoutView(Context context, ItemRule itemRule) {
         LinearLayout linearLayout = new LinearLayout(context);
         LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
