@@ -18,7 +18,7 @@ public class CustomButtonEditDisplay {
 
 
 
-    public static Button getButton(final CustomFragment customFragment, final Context context, final FragmentReference fragmentReference, final ModeType mode, final LinearLayout linearMother, final Map<Integer,ItemRule> test) {
+    public static Button getButton(final CustomFragment customFragment, final Context context, final FragmentReference fragmentReference, final ModeType mode, final LinearLayout linearMother, final Map<Integer,ItemRule> rules) {
         Button button = new Button(context);
         String text = context.getResources().getString(mode.getTextId());
         button.setText(text);
@@ -28,7 +28,7 @@ public class CustomButtonEditDisplay {
             public void onClick(View v) {
                 MainActivity activity = (MainActivity) customFragment.getActivity();
                 if(mode.isSave()){
-                    CharacterSave.save(context,fragmentReference.getName(),linearMother,test);
+                    CharacterSave.save(context,fragmentReference.getName(),linearMother,rules);
                 }
                 ModeType modeToApply = ModeType.getMode(mode.getOppositeId());
                 CustomFragment fragment = activity.getCustomFragment(fragmentReference,modeToApply);
