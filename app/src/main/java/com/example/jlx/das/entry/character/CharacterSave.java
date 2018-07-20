@@ -21,7 +21,7 @@ public class CharacterSave {
 
     }
 
-    public static boolean save(Context context, String fragmentId, LinearLayout linearMother,Map<Integer,ItemRule> valueViewId){
+    public static boolean save(Context context, String fragmentId, LinearLayout linearMother,Map<ItemRule,Integer> valueViewId){
         boolean succes = true;
 
         Character character = CharacterReader.getCharacterNewValue(linearMother,valueViewId);

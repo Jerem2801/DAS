@@ -43,7 +43,7 @@ public class CustomFragment extends Fragment {
         Context context = rootView.getContext();
         LinearLayout linearMother = rootView.findViewById(R.id.fragment_rootview);
 
-        Map<Integer,ItemRule> rules = Maps.newHashMap();
+        Map<ItemRule,Integer> rules = Maps.newHashMap();
 
         CustomView customView = new CustomView(context,linearMother,fragmentReference.getName(), modeType);
         customView.createCustomView(rules);

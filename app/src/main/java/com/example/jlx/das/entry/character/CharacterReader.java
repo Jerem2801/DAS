@@ -62,12 +62,12 @@ public class CharacterReader {
         return new Character(sortMap);
     }
 
-    public static Character getCharacterNewValue(LinearLayout linearMother, Map<Integer,ItemRule> valueViewId){
+    public static Character getCharacterNewValue(LinearLayout linearMother, Map<ItemRule,Integer> valueViewId){
         Map<ItemRule,String> ruleAndValue = Maps.newHashMap();
 
-        for(Map.Entry<Integer, ItemRule> entry : valueViewId.entrySet()){
-            Integer key = entry.getKey();
-            ItemRule itemRule = entry.getValue();
+        for(Map.Entry<ItemRule,Integer> entry : valueViewId.entrySet()){
+            ItemRule itemRule = entry.getKey();
+            Integer key = entry.getValue();
 
             View viewById = linearMother.findViewById(key);
             String value = StringUtils.EMPTY;

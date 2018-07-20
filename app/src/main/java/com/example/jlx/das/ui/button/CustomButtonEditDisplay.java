@@ -18,7 +18,7 @@ public class CustomButtonEditDisplay {
 
 
 
-    public static Button getButton(final CustomFragment customFragment, final Context context, final FragmentReference fragmentReference, final ModeType mode, final LinearLayout linearMother, final Map<Integer,ItemRule> rules) {
+    public static Button getButton(final CustomFragment customFragment, final Context context, final FragmentReference fragmentReference, final ModeType mode, final LinearLayout linearMother, final Map<ItemRule,Integer> rules) {
         Button button = new Button(context);
         String text = context.getResources().getString(mode.getTextId());
         button.setText(text);

@@ -24,7 +24,7 @@ public abstract class CustomItemView {
     }
 
     @SuppressLint("NewApi")
-    public LinearLayout createItemView(Context context,Map<Integer,ItemRule> rules){
+    public LinearLayout createItemView(Context context,Map<ItemRule,Integer> rules){
         return null;
     }
 
