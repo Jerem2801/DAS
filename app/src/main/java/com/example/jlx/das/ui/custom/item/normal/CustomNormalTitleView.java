@@ -23,7 +23,7 @@ public class CustomNormalTitleView {
         textTitle.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         textTitle.setGravity(Gravity.CENTER);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            textTitle.setBackground(context.getResources().getDrawable(R.drawable.custom_border_red_with_background));
+            textTitle.setBackground(context.getResources().getDrawable(R.drawable.custom_border_round_red_with_background));
         }
         if(StringUtils.isNotBlank(itemRule.getDescription())) {
             textTitle.setOnClickListener(new CustomClickHelpListener(context, itemRule.getName(), itemRule.getDescription()));

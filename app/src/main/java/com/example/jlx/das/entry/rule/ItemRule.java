@@ -14,13 +14,17 @@ public class ItemRule extends Item {
     private String typeView;
     private String typeValue;
     private String reference;
+    private String rule;
+    private String ruleValue;
 
-    public ItemRule(String id, String name, String description, int order,String typeView, String typeValue, String reference) {
+    public ItemRule(String id, String name, String description, int order, String typeView, String typeValue, String reference, String rule, String ruleValue) {
         super(id, name, description);
         this.order = order;
         this.typeView = typeView;
         this.typeValue = typeValue;
         this.reference = reference;
+        this.rule = rule;
+        this.ruleValue = ruleValue;
     }
 
     public int getOrder() {
@@ -53,5 +57,21 @@ public class ItemRule extends Item {
 
     public void setTypeView(String typeView) {
         this.typeView = typeView;
+    }
+
+    public String getRule() {
+        return rule;
+    }
+
+    public void setRule(String rule) {
+        this.rule = rule;
+    }
+
+    public String getRuleValue() {
+        return ruleValue;
+    }
+
+    public void setRuleValue(String ruleValue) {
+        this.ruleValue = ruleValue;
     }
 }

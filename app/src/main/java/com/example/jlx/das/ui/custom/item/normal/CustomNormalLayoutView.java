@@ -2,8 +2,6 @@ package com.example.jlx.das.ui.custom.item.normal;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.GravityCompat;
-import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import com.example.jlx.das.R;
@@ -20,7 +18,7 @@ public class CustomNormalLayoutView {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setId(itemRule.getOrder());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            linearLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_black));
+            linearLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_round_black));
         }
         return linearLayout;
     }
