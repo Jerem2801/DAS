@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jlx.das.R;
+import com.example.jlx.das.entry.character.Character;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
 import com.example.jlx.das.ui.custom.item.CustomItemView;
@@ -16,15 +17,22 @@ import java.util.Map;
 
 public class CustomAttributeView extends CustomItemView {
 
+    private CustomFocusValueView focusValueView;
+
 
 
     public CustomAttributeView(ItemRule itemRule, String value) {
         super(itemRule, value);
+        focusValueView = new CustomFocusAndValueView();
+    }
+
+    public void setFocusValueView(CustomFocusValueView focusValueView) {
+        this.focusValueView = focusValueView;
     }
 
     @Override
     @SuppressLint("NewApi")
-    public LinearLayout createItemView(Context context, Map<ItemRule,Integer> rules){
+    public LinearLayout createItemView(Context context, Map<ItemRule,Integer> rules,Character character){
         LinearLayout attributeValueFocusLinearLayout = null;
         if(isFocus(itemRule)){
 
@@ -34,7 +42,7 @@ public class CustomAttributeView extends CustomItemView {
             TextView attributeView = CustomAttributeNameView.createAttributeTextView(context,itemRule);
             attributeValueFocusLinearLayout.addView(attributeView);
 
-            LinearLayout focusAndValueLayout = CustomFocusAndValueView.createFocusAndValueLayout(context,itemRule,value);
+            LinearLayout focusAndValueLayout = focusValueView.createValueView(context,itemRule,value,rules,character);
             attributeValueFocusLinearLayout.addView(focusAndValueLayout);
         }
         return attributeValueFocusLinearLayout;

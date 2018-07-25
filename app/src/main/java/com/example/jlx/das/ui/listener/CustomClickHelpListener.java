@@ -5,10 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.example.jlx.das.entry.item.Item;
-import com.example.jlx.das.ui.dialog.DialogFactory;
-
-import java.util.zip.Inflater;
+import com.example.jlx.das.ui.dialog.helper.DialogFactory;
 
 public class CustomClickHelpListener implements View.OnClickListener{
 

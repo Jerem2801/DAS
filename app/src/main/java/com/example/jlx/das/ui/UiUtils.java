@@ -19,34 +19,4 @@ public class UiUtils {
         return (Integer) Math.round(v);
     }
 
-    private static Integer getRandomInt(){
-        Random rand = new Random();
-        int randomNum = rand.nextInt((1000 - 1) + 1) + 1;
-        return randomNum;
-    }
-
-    public static Integer getRandomId(Context context){
-        Integer i = 0;
-        while(isResourceIdInResources(context,i)){
-            i = getRandomInt();
-        }
-        return i;
-    }
-
-    private static boolean isResourceIdInResources(Context context, int randomId){
-        try{
-            context.getResources().getResourceName(randomId);
-            return true;
-        }catch (Resources.NotFoundException e){
-            return false;
-        }
-    }
-
-    public static Integer getId(View view){
-        int i = 0;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            i = view.generateViewId();
-        }
-        return i;
-    }
 }

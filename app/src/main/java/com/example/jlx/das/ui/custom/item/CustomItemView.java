@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.jlx.das.entry.character.Character;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.UiUtils;
 
@@ -24,9 +25,7 @@ public abstract class CustomItemView {
     }
 
     @SuppressLint("NewApi")
-    public LinearLayout createItemView(Context context,Map<ItemRule,Integer> rules){
-        return null;
-    }
+    public abstract LinearLayout createItemView(Context context, Map<ItemRule,Integer> rules, Character character);
 
 
 

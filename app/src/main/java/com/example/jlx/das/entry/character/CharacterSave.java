@@ -40,8 +40,9 @@ public class CharacterSave {
             String value = entry.getValue();
             if(!StringUtils.isBlank(value)){
                 builder.append(itemRule.getId()+";"+value);
+                builder.append("\n");
             }
-            builder.append("\n");
+
         }
         return builder.toString();
     }

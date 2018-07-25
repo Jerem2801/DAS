@@ -35,6 +35,12 @@ public class SpinnerUtils {
         return spinner;
     }
 
+    private static void setSpinnerItem(Context context, Spinner spinner, List<Item> items) {
+        ArrayAdapter<Item> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, items);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
     public static Spinner createSpinnerWithItem(Context context,List<Item> items,Item item){
         Spinner spinner = createSpinner(context,items);
         int position = getPositionOnItem(spinner,item);
@@ -42,20 +48,17 @@ public class SpinnerUtils {
         return spinner;
     }
 
-
-    private static void setSpinnerItem(Context context, Spinner spinner, List<Item> items) {
-        ArrayAdapter<Item> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, items);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
-
     private static int getPositionOnItem(Spinner spinner,Item item){
         int position = 0;
         for (int i = 0; i < spinner.getCount(); i++) {
             if (spinner.getItemAtPosition(i).equals(item)) {
-               position = i;
+                position = i;
             }
         }
         return position;
     }
+
+
+
+
 }

@@ -27,10 +27,12 @@ public class ValueUtils {
         List<String> valuesData = RessourceUtils.getData(context, pathValue);
         for(String valueData : valuesData){
             String[] splitData = StringUtils.split(valueData, ReaderConstant.SEPARATOR);
-            String id = splitData[ID];
-            String value = splitData[VALUE];
+            if(splitData.length != 0){
+                String id = splitData[ID];
+                String value = splitData[VALUE];
+                values.put(id,value);
+            }
 
-            values.put(id,value);
         }
         return values;
     }

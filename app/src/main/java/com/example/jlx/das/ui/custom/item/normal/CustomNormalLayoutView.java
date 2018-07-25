@@ -16,7 +16,6 @@ public class CustomNormalLayoutView {
         linearParams.setMargins(0,0,0, UiUtils.sizeInDp(context,16));
         linearLayout.setLayoutParams(linearParams);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setId(itemRule.getOrder());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             linearLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_round_black));
         }

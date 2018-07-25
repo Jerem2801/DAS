@@ -3,6 +3,7 @@ package com.example.jlx.das.ui.custom.item;
 import com.example.jlx.das.controller.fragment.ModeType;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.custom.item.attribute.CustomAttributeView;
+import com.example.jlx.das.ui.custom.item.attribute.CustomFocusAndValueEditView;
 import com.example.jlx.das.ui.custom.item.normal.CustomNormalValueEditView;
 import com.example.jlx.das.ui.custom.item.normal.CustomNormalView;
 import com.google.common.collect.Maps;
@@ -25,7 +26,7 @@ public enum CustomItemViewFactory {
         public CustomItemView createCustomItemView(ItemRule itemRule, String value, ModeType modeType) {
             CustomAttributeView customAttributeView = new CustomAttributeView(itemRule, value);
             if(modeType.isSave()){
-
+                customAttributeView.setFocusValueView(new CustomFocusAndValueEditView());
             }
             return customAttributeView;
         }

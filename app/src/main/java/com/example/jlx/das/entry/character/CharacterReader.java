@@ -82,6 +82,8 @@ public class CharacterReader {
                         value = ValueUtils.EMPTY;
                     }
                 }
+            }else if(StringUtils.equals(itemRule.getRule(),"list")){
+
             }else{
                 Spinner spinner = (Spinner) viewById;
                 Item item = (Item) spinner.getSelectedItem();

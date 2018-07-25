@@ -21,18 +21,20 @@ import com.example.jlx.das.ui.custom.view.IdUtils;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Map;
 
-
-public class CustomFocusAndValueView implements CustomFocusValueView{
+public class CustomFocusAndValueEditView implements CustomFocusValueView{
 
     private static final String FOCUS = "_focus";
 
-    public CustomFocusAndValueView(){
+    public CustomFocusAndValueEditView(){
 
     }
 
-    public LinearLayout createValueView(Context context, ItemRule itemRule, String value,Map<ItemRule,Integer> rules,Character character) {
+    @SuppressLint("NewApi")
+    public LinearLayout createValueView(Context context, ItemRule itemRule, String value, Map<ItemRule,Integer> rules, Character character) {
         // LINEAR HORIZONTAL
         LinearLayout motherLayout = createMotherLayout(context);
 
@@ -44,11 +46,31 @@ public class CustomFocusAndValueView implements CustomFocusValueView{
         IdUtils.setIdToView(flex,itemRuleFocus,rules);
 
         // VALUE
-        EditText valueLinearLayout = createValueLinearLayout(context,value);
-        motherLayout.addView(valueLinearLayout);
+        EditText textValue = new EditText(context);
+        if(ValueUtils.isEmpty(value)){
+            value = StringUtils.EMPTY;
+        }
+        LinearLayout.LayoutParams attributeFocusLinearLayoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        attributeFocusLinearLayoutParams.weight = 0.5f;
+        attributeFocusLinearLayoutParams.gravity = Gravity.CENTER;
+        textValue.setLayoutParams(attributeFocusLinearLayoutParams);
+        textValue.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        textValue.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
+        textValue.setText("0");
+        if(ValueUtils.isEmpty(value) || !StringUtils.isEmpty(value)){
+            textValue.setText(value);
+        }
+        textValue.setBackground(context.getDrawable(R.drawable.custom_line_vertical));
+        textValue.setGravity(Gravity.CENTER);
+
+        motherLayout.addView(textValue);
+        IdUtils.setIdToView(textValue,itemRule,rules);
+
 
         return motherLayout;
     }
+
 
     private LinearLayout createMotherLayout(Context context){
         LinearLayout linearHorizon = new LinearLayout(context);
@@ -59,12 +81,13 @@ public class CustomFocusAndValueView implements CustomFocusValueView{
     }
 
     @SuppressLint("NewApi")
-    private EditText createValueLinearLayout(Context context, String value) {
-        EditText valueView =  new EditText(context);
-        valueView.setEnabled(false);
+    private TextView createValueLinearLayout(Context context, String value) {
+        TextView valueView =  new TextView(context);
         LinearLayout.LayoutParams attributeFocusLinearLayoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
         attributeFocusLinearLayoutParams.weight = 0.5f;
+        //attributeFocusLinearLayoutParams.setMargins(0,  0, 0,0);
         valueView.setLayoutParams(attributeFocusLinearLayoutParams);
+        valueView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         valueView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         valueView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
         valueView.setText("0");
