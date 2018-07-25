@@ -13,6 +13,7 @@ import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.item.ItemUtils;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.ToastUtils;
+import com.example.jlx.das.ui.item.type.attribute.value.Focus;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.common.collect.Lists;
 
@@ -49,8 +50,7 @@ public class DialogListFactory {
                 addSelectedItem(context,selectedItems,flexboxLayout);
                 for(Integer i : selectedItems){
                     Item item = items.get(i);
-                    TextView focus = new TextView(context);
-                    focus.setText(item.getName());
+                    TextView focus = Focus.createFocusList(context,item);
                     flexboxLayout.addView(focus);
                 }
             }

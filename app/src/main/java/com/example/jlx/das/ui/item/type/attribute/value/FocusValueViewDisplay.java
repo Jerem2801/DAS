@@ -27,8 +27,7 @@ public class FocusValueViewDisplay implements FocusValueView{
         List<String> split = Arrays.asList(StringUtils.split(value, "&"));
         for(Item item : items){
             if(split.contains(item.getId())) {
-                TextView focus = new TextView(context);
-                focus.setText(item.getName());
+                TextView focus = Focus.createFocusList(context,item);
                 flexboxLayout.addView(focus);
             }
         }
