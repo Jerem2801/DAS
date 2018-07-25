@@ -36,7 +36,7 @@ public class CustomNormalView extends CustomItemView {
 
     @Override
     @SuppressLint("NewApi")
-    public LinearLayout createItemView(Context context, Map<ItemRule,Integer> rules,Character character){
+    public LinearLayout createItemView(Context context, Map<ItemRule,Integer> rules,Character character,LinearLayout mother){
         LinearLayout layoutView = customLayoutView.createLayoutView(context,itemRule);
 
         TextView titleView = customTitleView.createTitleView(context, itemRule);

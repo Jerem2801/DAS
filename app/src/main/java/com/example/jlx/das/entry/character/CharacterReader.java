@@ -5,13 +5,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.jlx.das.data.DataPoolManager;
 import com.example.jlx.das.data.DataPoolReader;
 import com.example.jlx.das.entry.ValueUtils;
 import com.example.jlx.das.entry.item.Item;
 import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.entry.rule.ItemRuleReader;
 import com.example.jlx.das.stream.AssetUtils;
+import com.google.android.flexbox.FlexboxLayout;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
@@ -83,7 +86,21 @@ public class CharacterReader {
                     }
                 }
             }else if(StringUtils.equals(itemRule.getRule(),"list")){
-
+                List<Item> items = DataPoolManager.getItems(itemRule.getReference());
+                FlexboxLayout flexboxLayout = (FlexboxLayout) viewById;
+                TextView childAt1 = (TextView) flexboxLayout.getChildAt(0);
+                String text = (String) childAt1.getText();
+                String[] splits = StringUtils.split(text, ";");
+                for(String split : splits){
+                    if(StringUtils.isNumeric(split)) {
+                        int i = Integer.parseInt(split);
+                        if (StringUtils.isBlank(value)) {
+                            value = items.get(i).getId();
+                        } else {
+                            value += "&" + items.get(i).getId();
+                        }
+                    }
+                }
             }else{
                 Spinner spinner = (Spinner) viewById;
                 Item item = (Item) spinner.getSelectedItem();

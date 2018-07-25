@@ -87,7 +87,7 @@ public class CustomFocusAndValueView implements CustomFocusValueView{
         focusParam.setMargins(0,  0, 0,0);
         flexboxLayout.setLayoutParams(focusParam);
 
-
+        /*
         if(flexboxLayout.getChildAt(0) == null){
             TextView focusView = new TextView(context);
             FlexboxLayout.LayoutParams focusParams = new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
@@ -96,8 +96,7 @@ public class CustomFocusAndValueView implements CustomFocusValueView{
             focusView.setText("NONE");
             focusView.setVisibility(View.INVISIBLE);
             flexboxLayout.addView(focusView);
-        }
-
+        }*/
 
         return flexboxLayout;
     }

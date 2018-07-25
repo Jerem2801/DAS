@@ -35,7 +35,7 @@ public class CustomView {
             String value = entry.getValue();
             CustomItemView customItemView = CustomItemViewFactory.getCustomItemView(itemRule,value, modeType);
             if(customItemView != null){
-                LinearLayout itemView = customItemView.createItemView(context,rules,fragmentCharacter);
+                LinearLayout itemView = customItemView.createItemView(context,rules,fragmentCharacter,mother);
                 if(itemView != null){
                     mother.addView(itemView);
                 }
