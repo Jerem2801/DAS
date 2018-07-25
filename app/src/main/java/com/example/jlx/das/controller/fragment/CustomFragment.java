@@ -1,7 +1,6 @@
 package com.example.jlx.das.controller.fragment;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import com.example.jlx.das.R;
 import com.example.jlx.das.entry.rule.ItemRule;
-import com.example.jlx.das.ui.UiUtils;
 import com.example.jlx.das.ui.button.CustomButtonEditDisplay;
-import com.example.jlx.das.ui.custom.view.CustomView;
+import com.example.jlx.das.ui.item.view.ItemView;
 import com.google.common.collect.Maps;
 
 import java.util.Map;
@@ -45,7 +42,7 @@ public class CustomFragment extends Fragment {
 
         Map<ItemRule,Integer> rules = Maps.newHashMap();
 
-        CustomView customView = new CustomView(context,linearMother,fragmentReference.getName(), modeType);
+        ItemView customView = new ItemView(context,linearMother,fragmentReference.getName(), modeType);
         customView.createCustomView(rules);
 
         Button button = CustomButtonEditDisplay.getButton(this,context,fragmentReference, modeType,linearMother,rules);

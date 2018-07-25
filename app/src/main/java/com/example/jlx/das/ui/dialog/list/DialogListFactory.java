@@ -7,7 +7,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.jlx.das.R;
+import com.example.jlx.das.data.DataPoolManager;
 import com.example.jlx.das.entry.item.Item;
+import com.example.jlx.das.entry.item.ItemUtils;
+import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.ToastUtils;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.common.collect.Lists;
@@ -15,46 +19,43 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class DialogListFactory {
 
-    public static Dialog createCustomDialog(final Context context, String title, final List<Item> items,final FlexboxLayout flexboxLayout){
-        final List<Integer> mSelectedItems = Lists.newArrayList(); // Where we track the selected items
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        final String[] names = getName(items);
+    public static Dialog createCustomDialog(final Context context, final FlexboxLayout flexboxLayout,ItemRule itemRule,String value){
+        final List<Integer> selectedItems = Lists.newArrayList();
+        final List<Item> items = DataPoolManager.getItems(itemRule.getReference());
+        final String[] names = ItemUtils.getNamesOfItemsInArray(items);
+        boolean[] checkedItems = getCheckedItems(selectedItems,items,value);
 
-        builder.setTitle(title).setMultiChoiceItems(names, null,
-                new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which,
-                                        boolean isChecked) {
-                        if (isChecked) {
-                            mSelectedItems.add(which);
-                        } else if (mSelectedItems.contains(which)) {
-                            mSelectedItems.remove(Integer.valueOf(which));
-                        }
-                        ToastUtils.showToast(context,names[which]);
-                    }
-                })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(itemRule.getName());
+        builder.setMultiChoiceItems(names, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if (isChecked) {
+                    selectedItems.add(which);
+                } else {
+                    selectedItems.remove(Integer.valueOf(which));
+                }
+            }
+        });
+        builder.setPositiveButton(context.getResources().getString(R.string.valid), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 flexboxLayout.removeAllViews();
-                String join = StringUtils.join(mSelectedItems, ";");
-                TextView ids = new TextView(context);
-                ids.setText(join);
-                ids.setVisibility(View.INVISIBLE);
-                flexboxLayout.addView(ids,0);
-                for(Integer i : mSelectedItems){
+                addSelectedItem(context,selectedItems,flexboxLayout);
+                for(Integer i : selectedItems){
                     Item item = items.get(i);
                     TextView focus = new TextView(context);
                     focus.setText(item.getName());
                     flexboxLayout.addView(focus);
                 }
             }
-        })
-        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        });
+       builder .setNegativeButton(context.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
@@ -65,13 +66,26 @@ public class DialogListFactory {
 
     }
 
-    private static String[]  getName(List<Item> items){
-        List<String> names = Lists.newArrayList();
+    private static boolean[] getCheckedItems(List<Integer> selectedItems,List<Item> items, String value) {
+        List<String> split = Arrays.asList(StringUtils.split(value, "&"));
+        boolean[] checkedItems = new boolean[items.size()];
+        int index = 0;
         for(Item item : items){
-            names.add(item.getName());
+            if(split.contains(item.getId())) {
+                selectedItems.add(index);
+                checkedItems[index] = true;
+            }
+            index++;
         }
-        String[] lists = names.toArray(new String[names.size()]);
-        return lists;
+        return checkedItems;
+    }
+
+    private static void addSelectedItem(Context context,List<Integer> selectedItems,FlexboxLayout flexboxLayout){
+        String joinIds = StringUtils.join(selectedItems, "&");
+        TextView ids = new TextView(context);
+        ids.setText(joinIds);
+        ids.setVisibility(View.GONE);
+        flexboxLayout.addView(ids,0);
     }
 
 }

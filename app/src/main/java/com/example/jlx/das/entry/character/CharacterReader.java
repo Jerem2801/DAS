@@ -89,15 +89,17 @@ public class CharacterReader {
                 List<Item> items = DataPoolManager.getItems(itemRule.getReference());
                 FlexboxLayout flexboxLayout = (FlexboxLayout) viewById;
                 TextView childAt1 = (TextView) flexboxLayout.getChildAt(0);
-                String text = (String) childAt1.getText();
-                String[] splits = StringUtils.split(text, ";");
-                for(String split : splits){
-                    if(StringUtils.isNumeric(split)) {
-                        int i = Integer.parseInt(split);
-                        if (StringUtils.isBlank(value)) {
-                            value = items.get(i).getId();
-                        } else {
-                            value += "&" + items.get(i).getId();
+                if(childAt1 != null) {
+                    String text = (String) childAt1.getText();
+                    String[] splits = StringUtils.split(text, "&");
+                    for (String split : splits) {
+                        if (StringUtils.isNumeric(split)) {
+                            int i = Integer.parseInt(split);
+                            if (StringUtils.isBlank(value)) {
+                                value = items.get(i).getId();
+                            } else {
+                                value += "&" + items.get(i).getId();
+                            }
                         }
                     }
                 }

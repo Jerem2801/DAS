@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.jlx.das.entry.item.Item;
+import com.example.jlx.das.entry.rule.ItemRule;
 import com.example.jlx.das.ui.dialog.helper.DialogFactory;
 import com.example.jlx.das.ui.dialog.list.DialogListFactory;
 import com.google.android.flexbox.FlexboxLayout;
@@ -14,21 +15,20 @@ import java.util.List;
 
 public class CustomClickListListener implements View.OnClickListener {
     private Context context;
-    private String title;
-    private List<Item> items;
+    private ItemRule itemRule;
     private FlexboxLayout flexboxLayout;
+    private String value;
 
-    public CustomClickListListener(Context context, String title, List<Item> items,FlexboxLayout flexboxLayout){
+    public CustomClickListListener(Context context, FlexboxLayout flexboxLayout, ItemRule itemRule, String value){
         this.context = context;
-        this.title = title;
-        this.items = items;
+        this.itemRule = itemRule;
         this.flexboxLayout = flexboxLayout;
+        this.value = value;
     }
 
     @Override
     public void onClick(View v) {
-        //LayoutInflater inflater = LayoutInflater.from(context);
-        Dialog dialog = DialogListFactory.createCustomDialog(context,title,items,flexboxLayout);
+        Dialog dialog = DialogListFactory.createCustomDialog(context,flexboxLayout,itemRule,value);
         dialog.show();
     }
 }

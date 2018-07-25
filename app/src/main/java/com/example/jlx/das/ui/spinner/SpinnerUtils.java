@@ -25,12 +25,6 @@ public class SpinnerUtils {
         params.gravity = Gravity.CENTER;
         spinner.setLayoutParams(params);
         spinner.setGravity(Gravity.CENTER);
-        Collections.sort(items, new Comparator<Item>() {
-
-            public int compare(Item o1, Item o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
         SpinnerUtils.setSpinnerItem(context,spinner,items);
         return spinner;
     }
