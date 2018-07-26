@@ -25,9 +25,13 @@ public class FocusValueViewDisplay implements FocusValueView{
     public void createValueView(Context context, ItemRule itemRule, String value, Map<ItemRule, Integer> rules, Character character,FlexboxLayout flexboxLayout) {
         List<Item> items = DataPoolManager.getItems(itemRule.getReference());
         List<String> split = Arrays.asList(StringUtils.split(value, "&"));
+        String separator = StringUtils.EMPTY;
+        if(split.size() > 1){
+            separator = ",";
+        }
         for(Item item : items){
             if(split.contains(item.getId())) {
-                TextView focus = Focus.createFocusList(context,item);
+                TextView focus = Focus.createFocusList(context,item,separator);
                 flexboxLayout.addView(focus);
             }
         }

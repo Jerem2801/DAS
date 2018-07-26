@@ -48,9 +48,13 @@ public class DialogListFactory {
             public void onClick(DialogInterface dialog, int id) {
                 flexboxLayout.removeAllViews();
                 addSelectedItem(context,selectedItems,flexboxLayout);
+                String separator = StringUtils.EMPTY;
+                if(selectedItems.size() > 1){
+                    separator = ",";
+                }
                 for(Integer i : selectedItems){
                     Item item = items.get(i);
-                    TextView focus = Focus.createFocusList(context,item);
+                    TextView focus = Focus.createFocusList(context,item,separator);
                     flexboxLayout.addView(focus);
                 }
             }
